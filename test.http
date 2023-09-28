@@ -1,23 +1,12 @@
+// ----- API Tests -----
 GET https://localhost:3000/api HTTP/1.1
-###
-GET https://localhost:3000/api/orders HTTP/1.1
-###
-
-GET https://localhost:3000/api/fruits HTTP/1.1
-###
-POST https://localhost:3000/api/fruits HTTP/1.1
-content-type: application/json
-
-{
-    "id": "4",
-    "name": "Kiwi"
-}
 
 ###
-DELETE https://localhost:3000/api/fruits/6513ec9dfbe2a38f5d78d9e6 HTTP/1.1
-###
+// ----- View Users -----
 GET https://localhost:3000/api/users HTTP/1.1
+
 ###
+// ----- Signup User -----
 POST https://localhost:3000/api/users/signup HTTP/1.1
 Content-Type: application/json
 
@@ -27,6 +16,7 @@ Content-Type: application/json
 }
 
 ###
+// ----- Login User -----
 POST https://localhost:3000/api/users/login HTTP/1.1
 Content-Type: application/json
 
@@ -35,12 +25,22 @@ Content-Type: application/json
     "password": "greeneggsandham"
 }
 ###
-POST https://localhost:3000/api/fruits HTTP/1.1
+// ----- View Posts -----
+GET https://localhost:3000/api/posts HTTP/1.1
+
+###
+// ----- Create Posts -----
+POST https://localhost:3000/api/posts/create HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhdGhhdCIsInVzZXJpZCI6IjY1MTQwNmIwZjQ2MWQxYWRjYzZjMmQ4NiIsImlhdCI6MTY5NTgxMjg5NiwiZXhwIjoxNjk1ODE2NDk2fQ.t1lYMbn4RCWCx-QV7qYMzzvPYpnPFqa8KXSJLTUlPk8
+Authorization: bearer "insert token"
 
 {
-    "id": "31",
-    "name": "Pineapplehart"
+    "departments": ["Finance", "Human Resources"],
+    "issue": "Funding is vanishing somewhere!"
 }
+###
+// ----- Delete Posts -----
+DELETE https://localhost:3000/api/posts/delete/"id" HTTP/1.1
+Authorization: bearer "insert token"
+
 ###

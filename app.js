@@ -12,18 +12,18 @@ const app = express();
 const urlprefix = '/api';
 
 // Database and Security
-const cert = fs.readFileSync("keys/certificate.pem");
-const options = {
-    server: {sslCA: cert}
-};
 const connstring = "mongodb+srv://admin:C6donsoiYQgWquwj@cluster0.wrgkjjg.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(connstring)
+mongoose.connect(connstring, {
+    tlsAllowInvalidCertificates: true,
+    tlsCAFile: "keys/certificate.pem"
+})
 .then(() =>{
     console.log("Connection Success!")
 })
-.catch(() => {
+.catch((err) => {
     console.log("Connection Failure!")
-}, options);
+    console.log(err)
+});
 
 app.use(express.json());
 
