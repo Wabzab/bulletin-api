@@ -32,7 +32,7 @@ GET https://localhost:3000/api/posts HTTP/1.1
 // ----- Create Posts -----
 POST https://localhost:3000/api/posts/create HTTP/1.1
 Content-Type: application/json
-Authorization: bearer "insert token"
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhdGhhdCIsInVzZXJpZCI6IjY1MTUzMDU3ZmVkOWEzZDU5YjRmYzhlNCIsImlhdCI6MTY5NjUwNzA3OCwiZXhwIjoxNjk2NTEwNjc4fQ.rRhbHvMWh25X6CJ5UbhWwzAWLQsvR9A1t0EPYRlueyM
 
 {
     "departments": ["Finance", "Human Resources"],
@@ -40,7 +40,7 @@ Authorization: bearer "insert token"
 }
 ###
 // ----- Delete Posts -----
-DELETE https://localhost:3000/api/posts/delete/"id" HTTP/1.1
-Authorization: bearer "insert token"
+DELETE https://localhost:3000/api/posts/delete/651530f2fed9a3d59b4fc8e8 HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhdGhhdCIsInVzZXJpZCI6IjY1MTUzMDU3ZmVkOWEzZDU5YjRmYzhlNCIsImlhdCI6MTY5NTg4NzUxNCwiZXhwIjoxNjk1ODkxMTE0fQ.WKMrML3RPJApdjuFf1ogzCBjsBnY6yyJBzSh_XXkO5A
 
 ###

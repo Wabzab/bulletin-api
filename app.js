@@ -27,6 +27,7 @@ mongoose.connect(connstring, {
 
 app.use(express.json());
 
+// Enable CORC
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin,X-Requested-With,ContentType,Accept,Authorization');
@@ -34,10 +35,12 @@ app.use((req, res, next) => {
     next();
 });
 
+// Handles a GET requests to the index
 app.get(urlprefix+'/', (req, res) => {
     res.send("Now its an Express!")
 });
 
+// Defer handling of user or post requests to separate scripts.
 app.use(urlprefix+'/users', userRoutes);
 app.use(urlprefix+'/posts', postRoutes);
 

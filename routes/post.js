@@ -4,6 +4,7 @@ const Post = require('../models/post');
 const checkauth = require('../check-auth');
 const { model } = require('mongoose');
 
+// Fetch all posts
 router.get('', (req, res) => {
     Post.find().then((posts) => {
         res.json({
@@ -13,6 +14,7 @@ router.get('', (req, res) => {
     })
 })
 
+// Create posts by authenticated users
 router.post('/create', checkauth, (req, res) => {
     const post = new Post({
         departments: req.body.departments,
@@ -26,6 +28,7 @@ router.post('/create', checkauth, (req, res) => {
     })
 })
 
+// Delete posts by authenticated users
 router.delete('/delete/:id', checkauth, (req, res) => {
     Post.deleteOne({_id: req.params.id})
     .then((result) => {
