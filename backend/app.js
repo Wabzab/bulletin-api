@@ -1,7 +1,6 @@
 // Modules
 const express = require('express');
 const mongoose = require('mongoose');
-const fs = require('fs');
 
 // Routes
 const userRoutes = require('./routes/user');

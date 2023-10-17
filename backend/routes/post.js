@@ -30,17 +30,17 @@ router.post('/create', checkauth, (req, res) => {
 
 // Delete posts by authenticated users
 router.delete('/delete/:id', checkauth, (req, res) => {
-    Post.deleteOne({_id: req.params.id})
-    .then((result) => {
-        res.status(200).json({
-            message: "Post deleted"
-        });
-    })
-    .catch(err => {
-        res.status(400).json({
-            error: err
-        });
-    })
+    Post.deleteOne({ _id: req.params.id })
+        .then((result) => {
+            res.status(200).json({
+                message: "Post deleted"
+            });
+        })
+        .catch(err => {
+            res.status(400).json({
+                error: err
+            });
+        })
 })
 
 module.exports = router;

@@ -1,0 +1,7 @@
+<form (submit)="onAddFruit(addfruit)" #addfruit="ngForm">
+    <input type="text" ngModel name="enteredId" placeholder="Fruit ID" required minlength="1"
+        pattern="^[a-zA-Z0-9\s_-]+$" #enteredId="ngModel">
+    <input type="text" ngModel name="enteredName" placeholder="Fruit Name" required minlength="1"
+        pattern="^[a-zA-Z0-9\s_-]+$" #enteredId="ngModel">
+    <button type="submit">Add Fruit</button>
+</form>

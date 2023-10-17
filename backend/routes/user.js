@@ -26,7 +26,8 @@ router.post('/signup', (req, res) => {
     .then(user => {
         // Prevent users with the same name
         if (user) {
-            return res.status(409).json({
+            // i am teapot
+            return res.status(418).json({
                 message: "Name already taken!"
             });
         }
