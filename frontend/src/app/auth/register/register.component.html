@@ -1,0 +1,7 @@
+<form #registerForm="ngForm" (submit)='onRegister(registerForm)'>
+    <input required ngModel type="text" name="username" placeholder="example@example.com" minlength="1"
+        pattern="^[\w\.]+@[\w]+\.[\w\.]+$" #username="ngModel">
+    <input required ngModel type="password" name="password" placeholder="secret" minlength="1" pattern="^[\w!@#]{8,}$"
+        #password="ngModel">
+    <button type="submit">Register</button>
+</form>
