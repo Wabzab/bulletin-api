@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms'
+import { FormControl, NgForm, Validators } from '@angular/forms'
 import { AuthService } from '../auth-service.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,32 @@ import { AuthService } from '../auth-service.service';
 })
 export class LoginComponent {
 
+  username = new FormControl('',
+    [
+      Validators.required
+    ]);
+  password = new FormControl('',
+    [
+      Validators.required
+    ]);
+
   constructor(public authService: AuthService) { }
+
+  getUsernameError() {
+    if (this.username.hasError('required')) {
+      return 'You must enter a value.'
+    }
+
+    return ''
+  }
+
+  getPasswordError() {
+    if (this.password.hasError('required')) {
+      return 'You must enter a value.'
+    }
+
+    return ''
+  }
 
   onLogin(loginForm: NgForm) {
     if (loginForm.invalid) {
@@ -17,8 +44,8 @@ export class LoginComponent {
       return
     }
     this.authService.login(
-      loginForm.value.username,
-      loginForm.value.password
+      this.username.value!,
+      this.password.value!
     )
     loginForm.resetForm()
   }

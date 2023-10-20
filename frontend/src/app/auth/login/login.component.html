@@ -1,7 +1,33 @@
-<form #loginForm="ngForm" (submit)='onLogin(loginForm)'>
-    <input required ngModel type="text" name="username" placeholder="example@example.com" minlength="1"
-        pattern="^[\w\.]+@[\w]+\.[\w\.]+$" #username="ngModel">
-    <input required ngModel type="password" name="password" placeholder="secret" minlength="1" pattern="^[\w!@#]{8,}$"
-        #password="ngModel">
-    <button type="submit">Login</button>
-</form>
+<div class="flex flex-col items-center">
+
+    <h1 class="underline">
+        Login
+    </h1>
+
+    <form #loginForm="ngForm" (submit)='onLogin(loginForm)' class="flex flex-col justify-center mx-auto w-1/4 gap-4">
+        <!-- Username Handlings -->
+        <mat-form-field appearance="fill">
+            <mat-label>Username form field</mat-label>
+            <input matInput placeholder="example@example.com" [formControl]="username">
+            <mat-error *ngIf="username.invalid">{{getUsernameError()}}</mat-error>
+        </mat-form-field>
+
+        <!-- Password Handlings -->
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label>Password form field</mat-label>
+            <input matInput type="password" placeholder="secret" [formControl]="password">
+            <mat-error *ngIf="password.invalid">{{getPasswordError()}}</mat-error>
+        </mat-form-field>
+
+        <!-- Submission Bootin -->
+        <button mat-stroked-button color="primary" type="submit" class="my-2">
+            Login
+        </button>
+
+        <!-- Sign up redirect -->
+        <div class="flex flex-row justify-center gap-2">
+            <p class="text-gray-700">Don't have an account?</p>
+            <a routerLink="/register" class="text-purple-900 font-bold">Sign Up</a>
+        </div>
+    </form>
+</div>

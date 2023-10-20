@@ -22,74 +22,74 @@ router.post('/signup', (req, res) => {
             message: "One or more input fields are blank!"
         });
     };
-    User.findOne({username: req.body.username})
-    .then(user => {
-        // Prevent users with the same name
-        if (user) {
-            // i am teapot
-            return res.status(418).json({
-                message: "Name already taken!"
-            });
-        }
-        // Generate a salt for the user
-        const salt = bcrypt.genSaltSync(10);
-        // Hash password with generated salt
-        bcrypt.hash(req.body.password, salt)
-        .then(hash => {
-            // Store user in mongoDB
-            const user = new User({
-                username: req.body.username,
-                password: hash,
-                salt: salt
-            });
-            user.save()
-            .then(result => {
-                res.status(201).json({
-                    message: "User created",
-                    result: result
+    User.findOne({ username: req.body.username })
+        .then(user => {
+            // Prevent users with the same name
+            if (user) {
+                // i am teapot
+                return res.status(418).json({
+                    message: "Name already taken!"
                 });
-            })
-            .catch(err => {
-                res.status(500).json({
-                    error: err
+            }
+            // Generate a salt for the user
+            const salt = bcrypt.genSaltSync(10);
+            // Hash password with generated salt
+            bcrypt.hash(req.body.password, salt)
+                .then(hash => {
+                    // Store user in mongoDB
+                    const user = new User({
+                        username: req.body.username,
+                        password: hash,
+                        salt: salt
+                    });
+                    user.save()
+                        .then(result => {
+                            res.status(201).json({
+                                message: "User created",
+                                result: result
+                            });
+                        })
+                        .catch(err => {
+                            res.status(500).json({
+                                error: err
+                            })
+                        })
                 })
-            })
         })
-    })
 })
 
 // Handle login of users
 router.post('/login', (req, res) => {
     // Look for user with matching name
-    User.findOne({username: req.body.username})
-    .then(user => {
-        // Check for matching password
-        bcrypt.hash(req.body.password, user.salt)
-        .then(hash => {
-            if (hash != user.password) {
-                return res.status(401).json({
-                    message: "Incorrect credentials!",
-                    hash: hash,
-                    password: user.password
+    User.findOne({ username: req.body.username })
+        .then(user => {
+            // Check for matching password
+            bcrypt.hash(req.body.password, user.salt)
+                .then(hash => {
+                    if (hash != user.password) {
+                        return res.status(401).json({
+                            message: "Incorrect credentials!",
+                            hash: hash,
+                            password: user.password
+                        });
+                    }
+                    // Authentication token to validate user for future requests.
+                    const token = jwt.sign({
+                        username: user.username,
+                        userid: user._id
+                    },
+                        "this_is_a_super_secret_secret",
+                        {
+                            expiresIn: "1h"
+                        });
+                    res.status(200).json({ token: token });
                 });
-            }
-            // Authentication token to validate user for future requests.
-            const token = jwt.sign({
-                username: user.username,
-                userid: user._id
-            },
-                "this_is_a_super_secret_secret",
-            {
-                expiresIn: "1h"
+        })
+        .catch(err => {
+            return res.status(401).json({
+                message: "Authentication Failure"
             });
-            res.status(200).json({token: token});
-        });
-    })
-    .catch(err => {
-        return res.status(401).json({
-            message: "Authentication Failure"
-        });
-    })
+        })
 })
 
 module.exports = router;
