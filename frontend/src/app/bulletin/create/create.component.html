@@ -1,0 +1,28 @@
+<div mat-dialog-content class="dialog-content">
+    <p>Enter details of new bulletin post.</p>
+    <mat-form-field class="dialog-departments">
+        <mat-label>Departments</mat-label>
+        <mat-select multiple="true" [formControl]="departments">
+            <mat-option *ngFor="let department of departmentOptions" [value]="department">{{department}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="departments.invalid">{{getDepartmentError()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="dialog-issue">
+        <mat-label>Issue</mat-label>
+        <textarea matInput [formControl]="issue" placeholder="Enter an issue..."></textarea>
+        <mat-error *ngIf="issue.invalid">{{getIssueError()}}</mat-error>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [disabled]="issue.invalid || departments.invalid" type="submit" (click)="onCreateClick()">
+        Create
+    </button>
+</div>
+
+<style>
+    .dialog-content {
+        display: flex;
+        flex-direction: column;
+    }
+</style>

@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private token!: string;
+  private token: string = '';
+  private loggedIn: boolean = false
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -26,14 +27,19 @@ export class AuthService {
       'https://localhost:3000/api/users/login',
       { username: pUsername, password: pPassword }
     ).subscribe(response => {
-      console.log(response)
+      console.log(response);
       const token = response.token;
       this.token = token;
-      this.router.navigate(["/bulletins"])
+      this.loggedIn = true;
+      this.router.navigate(["/"]);
     })
   }
 
   getToken() {
     return this.token;
+  }
+
+  isLoggedIn() {
+    return this.loggedIn;
   }
 }

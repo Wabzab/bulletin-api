@@ -19,6 +19,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { CreateComponent } from './bulletin/create/create.component';
+import { DeleteComponent } from './bulletin/delete/delete.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,9 @@ import { MatIconModule } from '@angular/material/icon';
     LoginComponent,
     RegisterComponent,
     DisplayComponent,
-    ErrorComponent
+    ErrorComponent,
+    CreateComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +48,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatToolbarModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

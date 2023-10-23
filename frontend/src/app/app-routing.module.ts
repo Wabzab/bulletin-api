@@ -7,7 +7,7 @@ import { DisplayComponent } from './bulletin/display/display.component';
 
 
 const routes: Routes = [
-  { path: 'bulletins', component: DisplayComponent },
+  { path: '', component: DisplayComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }
 ];
