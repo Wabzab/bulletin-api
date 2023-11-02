@@ -31,8 +31,13 @@ export class AuthService {
       const token = response.token;
       this.token = token;
       this.loggedIn = true;
-      this.router.navigate(["/"]);
+      this.router.navigate(["/display"]);
     })
+  }
+
+  logout() {
+    this.token = '';
+    this.loggedIn = false;
   }
 
   getToken() {

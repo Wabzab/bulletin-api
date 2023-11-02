@@ -24,6 +24,7 @@ import { CreateComponent } from './bulletin/create/create.component';
 import { DeleteComponent } from './bulletin/delete/delete.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MatSelectModule } from '@angular/material/select';
     DisplayComponent,
     ErrorComponent,
     CreateComponent,
-    DeleteComponent
+    DeleteComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

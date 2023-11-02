@@ -1,0 +1,40 @@
+h1 {
+    font-size: xx-large;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+p {
+    font-size: medium;
+    max-width: 90%;
+}
+
+@media (min-width: 640px) {
+    p {
+        max-width: 90%;
+    }
+}
+
+@media (min-width: 768px) {
+    p {
+        max-width: 80%;
+    }
+}
+
+@media (min-width: 1024px) {
+    p {
+        max-width: 70%;
+    }
+}
+
+@media (min-width: 1280px) {
+    p {
+        max-width: 60%;
+    }
+}
+
+@media (min-width: 1536px) {
+    p {
+        max-width: 50%;
+    }
+}

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { BulletinService } from '../bulletin.service';
+import { departmentOptions } from 'src/constants/department-constants';
 
 @Component({
   selector: 'app-create',
@@ -10,7 +11,7 @@ import { BulletinService } from '../bulletin.service';
 })
 export class CreateComponent {
 
-  departmentOptions: string[] = ['Agriculture', 'Education', 'Communications', 'Defence', 'Employment', 'Environment', 'Health', 'Science', 'Justice', 'Tourism', 'Transport']
+  departmentOptions: string[] = departmentOptions
 
   issue = new FormControl('',
     [Validators.required]

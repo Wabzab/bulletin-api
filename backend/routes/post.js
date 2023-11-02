@@ -5,7 +5,7 @@ const checkauth = require('../check-auth');
 const { model } = require('mongoose');
 
 // Fetch all posts
-router.get('', (req, res) => {
+router.get('', checkauth, (req, res) => {
     Post.find().then((posts) => {
         res.json({
             message: "Posts found",
