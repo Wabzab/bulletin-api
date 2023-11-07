@@ -14,7 +14,7 @@ const urlprefix = '/api';
 const connstring = "mongodb+srv://admin:C6donsoiYQgWquwj@cluster0.wrgkjjg.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(connstring, {
     tlsAllowInvalidCertificates: true,
-    tlsCAFile: "keys/certificate.pem"
+    tlsCAFile: "../keys/certificate.pem"
 })
     .then(() => {
         console.log("Connection Success!")
